@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:practice/log_in/Lon_in_widget.dart';
+import 'package:practice/log_in/Second_Route.dart';
+
+import 'Second_Route.dart';
+
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: MyLayout());
+    return  MaterialApp(
+        home: MyLayout(),
+        routes: {
+          '/secondRoute': (context) => SecondRoute(),
+
+        },
+    );
   }
 }
 
@@ -17,6 +28,9 @@ class MyLayout extends StatefulWidget {
 }
 
 class _MyLayoutState extends State<MyLayout> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,10 +40,8 @@ class _MyLayoutState extends State<MyLayout> {
             children: <Widget>[
               _arrow(),
               _getText(),
-              SizedBox(height: 10),
-              _logIn(),
-              _logIn(),
-              _logIn(),
+              SizedBox(height: 40),
+              LogIn_StatefullWidget(),
               _getText2(),
               const SizedBox(
                 height: 30,
@@ -62,7 +74,6 @@ class _MyLayoutState extends State<MyLayout> {
       ),
     );
   }
-
   _getText() {
     return Padding(
       padding: const EdgeInsets.only(right: 180.0, left: 10),
@@ -78,44 +89,17 @@ class _MyLayoutState extends State<MyLayout> {
     );
   }
 
-  _logIn() {
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: Container(
-        width: 330,
-        height: 60,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(5),
-            boxShadow: const [
-              BoxShadow(
-                  color: Colors.black12,
-                  offset: Offset(0.0, 3),
-                  blurRadius: 8.0),
-            ]),
-        child: Padding(
-          padding:
-              const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 5, top: 5),
-          child: Container(
-            child: const TextField(
-              obscureText: false,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                labelText: 'Password',
-                labelStyle: TextStyle(color: Colors.grey),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 
   _SignUp() {
     return Padding(
       padding: const EdgeInsets.only(left: 30, right: 30),
       child: InkWell(
-          onTap: () {},
+          onTap: () {
+            List<TextEditingController> list = [];
+
+
+            Navigator.pushNamed(context, '/secondRoute');
+          },
           child: Container(
             height: 60,
             decoration: BoxDecoration(
@@ -206,4 +190,11 @@ class _MyLayoutState extends State<MyLayout> {
       ),
     );
   }
+
 }
+class Person {
+  final String name;
+  final int age;
+Person({required this.name, required this.age});
+}
+
